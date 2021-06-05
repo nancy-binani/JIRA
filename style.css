@@ -13,12 +13,11 @@ body{
     height:12%;
     border:none;
     display: flex;
-    height:5rem;
     background-color: rgb(50, 41, 51);
    
 }
 .grid {
-    background-color: rgb(224, 222, 222);
+    background-color:  #413e3e;
     display: flex;
     flex-wrap: wrap;
     min-height: 88%;
@@ -107,13 +106,14 @@ body{
     background-color: rgb(53, 52, 52)!important;
 }
 .modal-container{
-    box-shadow: 0px 7px 12px 0px #aaa;
+    box-shadow: 0px 7px 10px 0px #aaa;
     height:15rem;
     width:28rem;
     display:flex;
     position: fixed;
     top : calc((100vh - 15rem)/2);
     left : calc((100vw - 28rem)/2);
+   
     
 }
 .writing-area{
@@ -126,6 +126,7 @@ body{
     font-size:1.8rem;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     outline: none;
+    
 }
 .filter-area{
     height: 100%;
@@ -184,3 +185,118 @@ body{
     border: 5px solid;
     opacity: 1;
 }
+.material-icons{
+    margin-top: 0.75rem;
+    margin-left: 30rem;
+}
+.lock{
+    margin-top: 0.75rem;
+    margin-left: 2.2rem;
+}
+
+
+.grid { 
+    height: 88%;
+    width: 100%;
+    left:0;
+    right: 0;
+    top: 12%;
+    bottom: 0;
+    position: absolute;
+  background: linear-gradient(124deg,#ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-size: 200% 200%;
+  
+  -webkit-animation: rainbow 15s ease infinite;
+  -z-animation: rainbow 15s ease infinite;
+  -o-animation: rainbow 15s ease infinite;
+    animation: rainbow 15s ease infinite;}
+  
+  @-webkit-keyframes rainbow {
+      0%{background-position:0% 82%}
+      50%{background-position:100% 19%}
+      100%{background-position:0% 82%}
+  }
+  @-moz-keyframes rainbow {
+      0%{background-position:0% 82%}
+      50%{background-position:100% 19%}
+      100%{background-position:0% 82%}
+  }
+  @-o-keyframes rainbow {
+      0%{background-position:0% 82%}
+      50%{background-position:100% 19%}
+      100%{background-position:0% 82%}
+  }
+  @keyframes rainbow { 
+      0%{background-position:0% 82%}
+      50%{background-position:100% 19%}
+      100%{background-position:0% 82%}
+  }
+
+  
+  /* @media (max-width: 768px) {
+  
+    .box-1 {
+    margin-top: 1.7rem;
+      width: 14rem;
+      margin-left: 1rem;
+      margin-right: 2rem;
+    }
+  
+    .box-2 {
+     margin-top: 1.7rem;
+      width: 7rem;
+      
+    }
+    .ticket{
+        background-color: white;
+        height: 7rem;
+        width: 10rem;
+       
+    }
+    .modal-container{
+        height:13rem;
+        width:25rem;
+        top : calc((100vh - 13rem)/2);
+        left : calc((100vw - 25rem)/2);
+      
+    }
+    .modal-filter{
+        width:50%;
+        height: 2rem;
+        margin-bottom: 0.8rem;   
+    }
+  }
+  
+  
+  @media (max-width: 640px) {
+  
+    .box-1 {
+    margin-top: 1.1rem;
+      width: 15rem;
+      margin-left: 1rem;
+      margin-right: 0.9rem;
+    }
+  
+    .box-2 {
+     margin-top: 1.2rem;
+      width: 6rem;
+      margin-left: 2px;
+      padding-top: 1px;
+    }
+    .box-7,.box-8{
+        height:3rem;
+        width: 3rem;
+      
+    }
+    .modal-container{
+        height:13rem;
+        width:21rem;
+        top : calc((100vh - 13rem)/2);
+        left : calc((100vw - 21rem)/2);
+      
+    }
+  }
+  
+  
+   
+  */
