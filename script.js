@@ -226,7 +226,6 @@ function loadTasks(passedColor){
         ticket.innerHTML = `
         <div class="ticket-color ${color}"></div>
         <div class="ticket-id">#${id}</div>
-        <div class ="ticket-lock></div>
         <div class="ticket-box" contenteditable>
         ${taskValue}
         </div>`;
