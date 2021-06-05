@@ -1,4 +1,5 @@
 
+
 let allFilters = document.querySelectorAll(".box div");
 let grid = document.querySelector(".grid");
 let addModal = document.querySelector(".box-7");
@@ -22,10 +23,18 @@ let deleteBtn = document.querySelector(".box-8");
 if(!localStorage.getItem("tasks")){
     localStorage.setItem("tasks",JSON.stringify([]));
 }
+let lockState = false;
+let lock = document.querySelector(".lock");
+lock.addEventListener("click",function(e){
+    lockState = !lockState;
+    if(lockState == true) 
+    alert("Welcome to JIRA TICKET APP🔑");
+})
 
 
 
 deleteBtn.addEventListener("click",function(e){
+    if(lockState == true){
     if(deleteState){
         deleteState = false;
         e.currentTarget.classList.remove("delete-state");
@@ -34,11 +43,16 @@ deleteBtn.addEventListener("click",function(e){
         deleteState = true;
         e.currentTarget.classList.add("delete-state");
     }
+}
+else{
+    alert("No modifications allowed in the document.Click on 🔐 to make furthur changes");
+}
 })
 
 
 
 addModal.addEventListener("click",function(){
+    if(lockState == true){
     if(modalVisible) return;
     if(deleteBtn.classList.contains("delete-state")){
         deleteState = false;
@@ -122,15 +136,31 @@ for(let i=0;i<allModalFilters.length;i++)
 
     body.appendChild(modal);
     modalVisible=true;
+}
+else{
+    alert("No modifications allowed in the document.Click on 🔐 to make furthur changes");
+ 
+}
 });
 
 
 
 for(let i=0;i<allFilters.length;i++){
     allFilters[i].addEventListener("click",function(e){
-        let color = e.currentTarget.classList[0].split("-")[0];
-        grid.style.background = colors[color];
-    });
+        if(lockState == true){
+        if(e.currentTarget.parentElement.classList.contains("selected-filter")){
+        e.currentTarget.parentElement.classList.remove("selected-filter");
+        loadTasks();
+        }
+        else{
+            let color = e.currentTarget.classList[0].split("-")[0];
+            e.currentTarget.parentElement.classList.add("selected-filter");
+            loadTasks(color)
+        }
+    }
+    else     alert("No modifications allowed in the document.Click on 🔐 to make furthur changes");
+
+    })
 }
 
 function saveTicketInLocalStorage(id,color,task){
@@ -176,19 +206,27 @@ function ticketColorHandler(e){
     
 }
 
-function loadTasks(){
+function loadTasks(passedColor){
+    let allTickets=document.querySelectorAll(".ticket");
+    for(let i=0;i<allTickets.length;i++){
+        allTickets[i].remove();
+    }
     let tasks = JSON.parse(localStorage.getItem("tasks"));
-   // let task = e.currentTarget.innerText;
+
     for(let i=0;i<tasks.length;i++){
         let id=tasks[i].id;
         let color=tasks[i].color;
         let taskValue=tasks[i].task;
 
+        if(passedColor){
+            if(passedColor!=color)  continue;
+        }
         let ticket=document.createElement("div");
         ticket.classList.add("ticket");
         ticket.innerHTML = `
         <div class="ticket-color ${color}"></div>
         <div class="ticket-id">#${id}</div>
+        <div class ="ticket-lock></div>
         <div class="ticket-box" contenteditable>
         ${taskValue}
         </div>`;
@@ -214,4 +252,30 @@ function loadTasks(){
         grid.appendChild(ticket);
     }
 }
+
+let del = document.querySelector(".material-icons");
+del.addEventListener("click",function(e){
+    if(lockState == true){
+        
+    if(deleteBtn.classList.contains("delete-state")){
+        deleteState = false;
+        deleteBtn.classList.remove("delete-state");
+    }
+   
+    let ans = confirm("Are you sure you want to delete all?👆✔") 
+    let allTickets=document.querySelectorAll(".ticket");
+    if(ans){
+        for(let i=0;i<allTickets.length;i++){
+            allTickets[i].remove();
+        }
+        
+        localStorage.setItem("tasks",JSON.stringify([]));
+    }
+}  
+else{
+    alert("No modifications allowed in the document.Click on 🔐 to make furthur changes");
+
+}
+})
 loadTasks();
+
